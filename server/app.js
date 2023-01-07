@@ -16,15 +16,6 @@ const connectionString = process.env.MONGODB_URI;
 //call die express Funktion, welche du importiert hast
 const app = express();
 
-//2. In VS Code, open the Command Palette.
-//Click on "View" and open "Command Palette."
-//Search "MongoDB: Connect" on the Command Palette and click on "Connect with Connection String."
-
-//3. Connect to your MongoDB deployment.
-//Paste your connection string into the Command Palette.
-
-//4. Click "Create New Playground" in MongoDB for VS Code to get started.
-
 //connect to MongoDB Database
 //make sure to replace the <password> with your the password set in MongoDB for the user
 mongoose.set('strictQuery', true);
