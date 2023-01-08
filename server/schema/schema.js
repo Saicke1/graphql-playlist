@@ -47,6 +47,7 @@ const BookType = new GraphQLObjectType({
             resolve(parent, args){
                 //console.log(parent);
                 //return _.find(authors, { id: parent.authorId})
+                return Author.findById(parent.authorId);
             }
         }
     })
@@ -66,6 +67,7 @@ const AuthorType = new GraphQLObjectType({
                 //return _.filter(books, { authorId: parent.id})
                 //es bedeutet: filter mir bitte aus den Büchern alle authorenIds,
                 //welche gleich sind mit der author iD aus AuthorType
+                return Book.find({ authorId: parent.id });
             }
         }
     })
@@ -81,6 +83,7 @@ const RootQuery = new GraphQLObjectType({
             resolve(parent, args){
                 //hier steht der code, um die Daten von der Database oder jedem anderen x-beliebigen Quelle zu erhalten
                 //return _.find(books, { id: args.id })
+                return Book.findById(args.id);
             }
         },
         author: {
@@ -88,18 +91,21 @@ const RootQuery = new GraphQLObjectType({
             args: { id: { type: GraphQLID }},
             resolve(parent, args){
                 //return _.find(authors, { id: args.id })
+                return Author.findById(args.id);
             }
         },
         books: {
             type: new GraphQLList(BookType),
             resolve(parent, args){
                 //return books
+                return Book.find({});
             }
         },
         authors: {
             type: new GraphQLList(AuthorType),
             resolve(parent, args){
                 //return authors
+                return Author.find({});
             }
         }
     }
