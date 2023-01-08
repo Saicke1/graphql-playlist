@@ -8,6 +8,8 @@ import schema from "./schema/schema.js";
 import mongoose from "mongoose";
 //importiere dotenv, weil es installiert wurde mit: npm install dotenv
 import * as dotenv from "dotenv";
+//importiere cors, weil es installiert wurde mit: npm install cors
+import cors from "cors";
 
 dotenv.config({ path: "./.env.local" });
 
@@ -15,6 +17,9 @@ const connectionString = process.env.MONGODB_URI;
 
 //call die express Funktion, welche du importiert hast
 const app = express();
+
+//allow cross origin requests
+app.use(cors());
 
 //connect to MongoDB Database
 //make sure to replace the <password> with your the password set in MongoDB for the user
