@@ -1,4 +1,4 @@
-import React, { Key } from 'react';
+import React, { Key, useState } from 'react';
 import { AuthorData } from '../@types';
 import { useQuery } from '@apollo/client';
 import { getAuthorsQuery } from "../queries/queries";
@@ -6,6 +6,10 @@ import { getAuthorsQuery } from "../queries/queries";
 type Props = {}
 
 const AddBook = (props: Props) => {
+
+    const [name, setName] = useState("");
+    const [genre, setGenre] = useState("");
+    const [authorId, setAuthorId] = useState("");
 
     const { loading, error, data } = useQuery(getAuthorsQuery);
 
@@ -18,25 +22,31 @@ const AddBook = (props: Props) => {
                 return (<option key={index} value={author.id}> {author.name} </option>);
             })
         }
-    }
+    };
+
+    const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      const showData = {name, genre, authorId};
+      console.log(showData);
+    };
 
   return (
     <div>
-        <form id="add-book">
+        <form id="add-book" onSubmit={submitForm}>
         <div className="field">
           <label>Book name:</label>
-          <input type="text"/>
+          <input type="text" value={name} onChange={(e) => {setName(e.target.value)}}/>
         </div>
         
         <div className="field">
           <label>Genre:</label>
-          <input type="text"/>
+          <input type="text" value={genre} onChange={(e) => {setGenre(e.target.value)}}/>
         </div>
 
 
         <div className="field">
           <label>Author:</label>
-          <select>
+          <select value={authorId} onChange={(e) => {setAuthorId(e.target.value)}}>
             <option>Select Author</option>
             {displayAuthors()}
           </select>
