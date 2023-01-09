@@ -1,6 +1,6 @@
 import React, { Key } from 'react'
-import { gql, useQuery } from '@apollo/client';
-/* import { graphql } from '@apollo/client/react/hoc'; */
+import { useQuery } from '@apollo/client';
+import { getBooksQuery } from "../queries/queries";
 
 type Props = {}
 
@@ -9,18 +9,7 @@ interface BookData {
     name: String
 }
 
-const getBooksQuery = gql`
-    {
-        books{
-            name
-            id
-        }
-    }
-`
-
 const BookList = (props: Props) => {
-    /* console.log(props);
-    console.log('typeof props', typeof props) */
 
     const { loading, error, data } = useQuery(getBooksQuery);
 
@@ -41,4 +30,3 @@ const BookList = (props: Props) => {
 
 
 export default BookList;
-/* export default graphql(getBooksQuery)(BookList); */

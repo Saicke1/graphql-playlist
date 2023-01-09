@@ -1,5 +1,6 @@
 import React, { Key } from 'react';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
+import { getAuthorsQuery } from "../queries/queries";
 
 type Props = {}
 
@@ -7,15 +8,6 @@ interface AuthorData {
     name: String,
     id: Key
 }
-
-const getAuthorsQuery = gql`
-    {
-        authors{
-            name
-            id
-        }
-    }
-`
 
 const AddBook = (props: Props) => {
 
