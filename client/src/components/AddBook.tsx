@@ -26,7 +26,7 @@ const AddBook = (props: Props) => {
         }
     };
 
-    const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    const submitForm = (e: React.FormEvent) => {
       e.preventDefault();
       const collectedData = {name, genre, authorId};
       console.log(collectedData);
