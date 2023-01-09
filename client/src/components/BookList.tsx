@@ -1,8 +1,13 @@
-import React from 'react'
-import { gql } from '@apollo/client';
-import { graphql } from '@apollo/client/react/hoc';
+import React, { Key } from 'react'
+import { gql, useQuery } from '@apollo/client';
+/* import { graphql } from '@apollo/client/react/hoc'; */
 
 type Props = {}
+
+interface BookData {
+    id: Key,
+    name: String
+}
 
 const getBooksQuery = gql`
     {
@@ -14,14 +19,26 @@ const getBooksQuery = gql`
 `
 
 const BookList = (props: Props) => {
-    console.log(props);
+    /* console.log(props);
+    console.log('typeof props', typeof props) */
+
+    const { loading, error, data } = useQuery(getBooksQuery);
+
+    if (loading) return <p>Books Loading...</p>;
+    if (error) return <p>Error :(</p>;
+
   return (
     <div>
         <ul id="book-list">
-            <li>Book Name</li>
+            {data.books.map((book: BookData) => (
+                <li key={book.id}>{book.name}</li>
+            ))}
         </ul>
     </div>
   )
 }
 
-export default graphql(getBooksQuery)(BookList);
+
+
+export default BookList;
+/* export default graphql(getBooksQuery)(BookList); */
