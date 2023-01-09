@@ -2,6 +2,7 @@ import React, { Key, useState } from 'react';
 import { AuthorData } from '../@types';
 import { useQuery, useMutation } from '@apollo/client';
 import { getAuthorsQuery, addBookMutation } from "../queries/queries";
+import { getBooksQuery } from "../queries/queries";
 
 type Props = {}
 
@@ -30,7 +31,7 @@ const AddBook = (props: Props) => {
       const collectedData = {name, genre, authorId};
       console.log(collectedData);
       addBook(
-        { variables: collectedData }
+        { variables: collectedData, refetchQueries: [{ query: getBooksQuery }] }
       );
     };
 
