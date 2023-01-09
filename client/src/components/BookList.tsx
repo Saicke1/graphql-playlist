@@ -2,6 +2,7 @@ import React from 'react';
 import { BookData } from '../@types';
 import { useQuery } from '@apollo/client';
 import { getBooksQuery } from "../queries/queries";
+import BookDetails from './BookDetails';
 
 type Props = {}
 
@@ -19,6 +20,7 @@ const BookList = (props: Props) => {
                 <li key={book.id}>{book.name}</li>
             ))}
         </ul>
+        <BookDetails/>
     </div>
   )
 }
