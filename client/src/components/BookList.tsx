@@ -1,13 +1,9 @@
-import React, { Key } from 'react'
+import React from 'react';
+import { BookData } from '../@types';
 import { useQuery } from '@apollo/client';
 import { getBooksQuery } from "../queries/queries";
 
 type Props = {}
-
-interface BookData {
-    id: Key,
-    name: String
-}
 
 const BookList = (props: Props) => {
 
