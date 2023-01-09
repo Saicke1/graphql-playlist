@@ -36,6 +36,8 @@ const BookDetails = (props: Props) => {
           </ul>
         </div>
       )
+    } else {
+      return (<div>No book selected ...</div>)
     }
   };
 
